@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GGG Vietnam — Ẩm Thực Đa Thương Hiệu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E;
+  --gold: #D4A843;
+  --cream: #FAF7F2;
+  --dark: #17110A;
+  --charcoal: #2C2215;
+  --muted: #8B7355;
+  --border: rgba(0,0,0,0.07);
+  --ct-orange: #FF6B35;
+  --ct-live: #22C55E;
+  --ct-roadmap: #8B5CF6;
+  --white: #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);color:var(--dark);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* ─── UTILITY ─── */
+.serif{font-family:'Cormorant Garamond',serif;}
+.flex{display:flex;align-items:center;}
+.gap8{gap:8px;} .gap12{gap:12px;} .gap16{gap:16px;}
+
+/* ─── CT LABELS ─── */
+.ct-live-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);
+  color:#16A34A;font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 10px;border-radius:20px;
+}
+.ct-live-badge::before{content:'●';font-size:7px;color:#22C55E;}
+
+.ct-roadmap-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);
+  color:#7C3AED;font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 10px;border-radius:20px;
+}
+.ct-roadmap-badge::before{content:'◆';font-size:7px;}
+
+.ct-zone-live{border:1.5px dashed rgba(34,197,94,0.35);border-radius:18px;padding:16px;position:relative;margin-top:8px;}
+.ct-zone-roadmap{border:1.5px dashed rgba(139,92,246,0.35);border-radius:18px;padding:16px;position:relative;margin-top:8px;background:rgba(139,92,246,0.02);}
+.ct-zone-label{position:absolute;top:-13px;left:14px;display:flex;align-items:center;gap:8px;background:var(--cream);padding:0 6px;}
+
+/* ─── NAV ─── */
+nav{
+  background:var(--dark);display:flex;justify-content:space-between;
+  align-items:center;padding:0 36px;height:62px;
+  position:sticky;top:0;z-index:200;
+  border-bottom:1px solid rgba(212,168,67,0.15);
+}
+.logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--gold);letter-spacing:-.5px;}
+.logo span{color:var(--red);}
+nav ul{list-style:none;display:flex;gap:28px;align-items:center;}
+nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;}
+nav a:hover{color:var(--gold);}
+.nav-cta{background:var(--red)!important;color:white!important;padding:8px 18px;border-radius:6px;font-weight:600!important;}
+.user-pill{display:flex;align-items:center;gap:8px;background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.25);padding:5px 14px 5px 5px;border-radius:30px;cursor:pointer;}
+.avatar{width:28px;height:28px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--dark);}
+.user-pill span{font-size:12px;color:var(--gold);font-weight:500;}
+
+/* ─── PERSONA BAR ─── */
+.persona-bar{
+  background:var(--charcoal);padding:9px 36px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.persona-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:600;white-space:nowrap;}
+.persona-btn{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.55);padding:4px 14px;border-radius:20px;
+  font-size:12px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:500;
+}
+.persona-btn.active,.persona-btn:hover{background:var(--red);border-color:var(--red);color:white;}
+.persona-seg{margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);}
+.persona-seg em{color:var(--gold);font-style:normal;font-weight:600;}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;background:var(--dark);
+  min-height:480px;display:flex;align-items:center;overflow:hidden;
+}
+.hero-glow{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 55% 70% at 65% 50%,rgba(200,16,46,.2) 0%,transparent 65%),
+    radial-gradient(ellipse 35% 50% at 15% 85%,rgba(212,168,67,.1) 0%,transparent 55%);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+.hero-content{position:relative;z-index:2;padding:56px 36px;max-width:620px;}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.hero-eyebrow-text{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.15em;font-weight:600;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);line-height:1.1;color:white;font-weight:700;margin-bottom:14px;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{color:rgba(255,255,255,.5);font-size:15px;line-height:1.65;margin-bottom:28px;max-width:460px;}
+.hero-actions{display:flex;gap:10px;}
+.btn-red{background:var(--red);color:white;padding:13px 26px;border-radius:7px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-red:hover{background:#a50d26;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:white;padding:13px 26px;border-radius:7px;font-size:13px;font-weight:500;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-float{
+  position:absolute;right:36px;top:50%;transform:translateY(-50%);
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;z-index:2;
+}
+.brand-chip{
+  background:rgba(255,255,255,.06);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.09);border-radius:12px;
+  padding:14px;text-align:center;width:112px;
+  transition:all .25s;cursor:pointer;
+}
+.brand-chip:hover{background:rgba(255,255,255,.1);border-color:rgba(212,168,67,.3);transform:translateY(-2px);}
+.brand-chip .em{font-size:26px;margin-bottom:5px;}
+.brand-chip .nm{font-size:9px;color:rgba(255,255,255,.65);font-weight:600;text-transform:uppercase;letter-spacing:.05em;line-height:1.3;}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;top:74px;right:20px;z-index:999;
+  background:white;border-radius:12px;padding:14px 16px;
+  box-shadow:0 8px 40px rgba(0,0,0,.18);width:300px;
+  display:flex;gap:11px;align-items:flex-start;
+  transform:translateX(340px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  border-left:3px solid var(--red);
+}
+.toast.show{transform:translateX(0);}
+.toast-icon{font-size:22px;flex-shrink:0;}
+.toast-title{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.toast-body{font-size:11px;color:var(--muted);line-height:1.4;}
+.toast-close{position:absolute;top:7px;right:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:15px;}
+
+/* ─── MAIN ─── */
+main{padding:0 36px 60px;}
+.section{margin-top:44px;}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;}
+.sec-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+.see-all{font-size:12px;color:var(--red);text-decoration:none;font-weight:600;}
+
+/* ─── SECTION HEADING WITH BADGES ─── */
+.sec-label-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+
+/* explain panel */
+.explain-panel{
+  background:linear-gradient(135deg,#f9f6ff,#f3f0ff);
+  border:1px solid rgba(139,92,246,.2);border-radius:10px;
+  padding:14px 18px;margin-top:12px;display:none;
+}
+.explain-panel.live-panel{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:rgba(34,197,94,.25);}
+.explain-panel.show{display:block;}
+.explain-panel h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.explain-panel.live-panel h4{color:#16A34A;}
+.explain-panel h4{color:#7C3AED;}
+.explain-panel ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.explain-panel ul li{font-size:12px;color:var(--charcoal);padding-left:14px;position:relative;line-height:1.5;}
+.explain-panel ul li::before{content:'→';position:absolute;left:0;font-size:10px;top:1px;}
+.explain-panel.live-panel ul li::before{color:#16A34A;}
+.explain-panel ul li::before{color:#7C3AED;}
+.toggle-btn{
+  background:none;border:1px solid rgba(0,0,0,.12);color:var(--muted);
+  font-size:11px;font-weight:600;padding:3px 11px;border-radius:20px;
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.toggle-btn:hover{background:rgba(0,0,0,.04);}
+
+/* ─── CARDS ─── */
+.grid4{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+
+.rcard{
+  background:white;border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.06);transition:all .3s;cursor:pointer;position:relative;
+}
+.rcard:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.11);}
+.rcard-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;}
+.rcard-img .cbadge{position:absolute;top:9px;left:9px;background:var(--red);color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.04em;}
+.rcard-img .cstar{position:absolute;top:9px;right:9px;background:rgba(0,0,0,.65);color:var(--gold);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.rcard-body{padding:12px 14px;}
+.rcard-brand{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--red);font-weight:700;margin-bottom:3px;}
+.rcard-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px;line-height:1.3;}
+.rcard-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+.rcard-price{font-weight:700;color:var(--dark);font-size:13px;}
+.why{font-size:10px;color:var(--ct-orange);font-weight:600;margin-top:7px;display:flex;align-items:center;gap:4px;}
+.why::before{content:'⚡';font-size:9px;}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.tag{background:rgba(200,16,46,.07);color:var(--red);font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600;}
+
+/* ─── FEEDBACK OVERLAY (roadmap) ─── */
+.feedback-overlay{
+  position:absolute;inset:0;background:rgba(17,11,5,.88);
+  border-radius:14px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  opacity:0;transition:opacity .25s;z-index:10;pointer-events:none;
+}
+.rcard:hover .feedback-overlay{opacity:1;pointer-events:auto;}
+.fb-title{color:white;font-size:11px;font-weight:700;text-align:center;}
+.fb-btns{display:flex;gap:8px;}
+.fb-btn{
+  border:none;border-radius:7px;padding:7px 14px;font-size:11px;
+  font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.fb-dislike{background:rgba(255,255,255,.12);color:white;}
+.fb-dislike:hover{background:var(--red);color:white;}
+.fb-ate{background:rgba(255,255,255,.12);color:white;}
+.fb-ate:hover{background:#22C55E;color:white;}
+
+/* ─── VOUCHER / PICKUP DEALS ─── */
+.voucher-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
+.voucher-scroll::-webkit-scrollbar{display:none;}
+.voucher-card{
+  flex-shrink:0;width:220px;background:white;border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.06);cursor:pointer;transition:all .25s;
+  border:1.5px solid transparent;
+}
+.voucher-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.voucher-top{
+  background:linear-gradient(135deg,var(--dark),var(--charcoal));
+  padding:16px;display:flex;align-items:center;gap:10px;
+  position:relative;overflow:hidden;
+}
+.voucher-top::after{
+  content:'';position:absolute;right:-20px;top:-20px;
+  width:80px;height:80px;
+  background:radial-gradient(circle,rgba(212,168,67,.2),transparent 70%);
+}
+.voucher-emoji{font-size:28px;}
+.voucher-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:white;line-height:1.2;}
+.voucher-sub{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;}
+.voucher-body{padding:12px 14px;}
+.voucher-saving{font-size:18px;font-weight:700;color:var(--red);font-family:'Cormorant Garamond',serif;}
+.voucher-exp{font-size:10px;color:var(--muted);margin-top:2px;}
+.voucher-bar{height:4px;background:rgba(0,0,0,.07);border-radius:2px;margin-top:10px;overflow:hidden;}
+.voucher-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--red));border-radius:2px;}
+.voucher-claimed{font-size:10px;color:var(--muted);margin-top:4px;}
+.voucher-why{margin-top:8px;}
+
+/* ─── GEO SECTION ─── */
+.geo-header{
+  background:white;border-radius:12px;padding:16px 20px;
+  display:flex;align-items:center;gap:14px;margin-bottom:16px;
+  box-shadow:0 2px 14px rgba(0,0,0,.05);
+}
+.geo-dot{font-size:28px;}
+.geo-info{flex:1;}
+.geo-info strong{font-size:14px;font-weight:700;display:block;margin-bottom:2px;}
+.geo-info span{font-size:12px;color:var(--muted);}
+.geo-change{font-size:12px;color:var(--red);text-decoration:none;font-weight:600;}
+
+/* ─── TIME PILL ─── */
+.time-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#FF6B35,#D4A843);
+  color:white;font-size:11px;font-weight:700;
+  padding:5px 14px;border-radius:20px;margin-bottom:14px;
+}
+
+/* ─── PAIRING ─── */
+.pairing-trigger{
+  background:linear-gradient(135deg,#FFF8F0,#FFF3E6);
+  border:1px solid rgba(212,168,67,.25);border-radius:14px;
+  padding:18px 22px;display:flex;align-items:center;gap:16px;
+  margin-bottom:16px;
+}
+.pairing-trigger-icon{font-size:32px;}
+.pairing-trigger-text strong{font-size:14px;font-weight:700;display:block;margin-bottom:3px;}
+.pairing-trigger-text span{font-size:12px;color:var(--muted);}
+
+/* ─── BRAND CROSS-SELL ─── */
+.crosssell-card{
+  background:white;border-radius:16px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.06);display:flex;
+}
+.crosssell-from{
+  flex:1;padding:20px;background:var(--dark);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.crosssell-arrow{
+  width:48px;background:linear-gradient(180deg,var(--red),#8B1020);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:white;flex-shrink:0;
+}
+.crosssell-to{flex:1;padding:20px;}
+.crosssell-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:6px;}
+.crosssell-from .crosssell-label{color:rgba(255,255,255,.4);}
+.crosssell-to .crosssell-label{color:var(--red);}
+.crosssell-brand-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;}
+.crosssell-from .crosssell-brand-name{color:white;}
+.crosssell-desc{font-size:12px;line-height:1.5;margin-top:5px;}
+.crosssell-from .crosssell-desc{color:rgba(255,255,255,.5);}
+.crosssell-to .crosssell-desc{color:var(--muted);}
+.crosssell-sim{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;
+}
+.sim-tag{background:rgba(200,16,46,.08);color:var(--red);font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;}
+
+/* ─── IMPLICIT FEEDBACK (roadmap) ─── */
+.implicit-demo{
+  background:white;border-radius:14px;padding:18px 20px;
+  box-shadow:0 2px 14px rgba(0,0,0,.06);
+}
+.impl-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.impl-row:last-child{border:none;}
+.impl-item{display:flex;align-items:center;gap:10px;flex:1;}
+.impl-emoji{font-size:28px;}
+.impl-name{font-size:13px;font-weight:600;color:var(--dark);}
+.impl-brand{font-size:11px;color:var(--muted);}
+.impl-bar-wrap{flex:1;max-width:160px;}
+.impl-bar-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;}
+.impl-bar{height:5px;background:rgba(0,0,0,.07);border-radius:3px;overflow:hidden;}
+.impl-bar-fill{height:100%;border-radius:3px;transition:width 1s ease;}
+.impl-action{font-size:11px;font-weight:700;padding:5px 10px;border-radius:6px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.impl-replace{background:rgba(139,92,246,.1);color:#7C3AED;}
+.impl-shown{font-size:11px;color:var(--muted);text-align:center;min-width:60px;}
+
+/* ─── AB TEST SECTION ─── */
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.ab-card{
+  background:white;border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 14px rgba(0,0,0,.06);
+}
+.ab-header{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;}
+.ab-variant{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.ab-variant.a{color:#2563EB;}
+.ab-variant.b{color:#D97706;}
+.ab-winner-badge{background:#22C55E;color:white;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.06em;}
+.ab-algo{font-size:12px;color:var(--muted);padding:0 16px 10px;}
+.ab-metrics{padding:10px 16px 14px;display:flex;flex-direction:column;gap:7px;}
+.ab-metric{display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.ab-metric-label{color:var(--muted);}
+.ab-metric-val{font-weight:700;color:var(--dark);}
+.ab-metric-val.win{color:#16A34A;}
+.ab-bar-row{padding:0 16px 16px;}
+.ab-stat-bar{height:6px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden;margin-top:4px;}
+.ab-stat-fill-a{height:100%;background:#3B82F6;border-radius:3px;}
+.ab-stat-fill-b{height:100%;background:#F59E0B;border-radius:3px;}
+.intellinode-banner{
+  background:linear-gradient(135deg,var(--dark),var(--charcoal));
+  border-radius:14px;padding:22px 24px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;margin-top:16px;
+}
+.intellinode-text h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:white;margin-bottom:5px;}
+.intellinode-text p{font-size:12px;color:rgba(255,255,255,.45);max-width:380px;line-height:1.6;}
+.intellinode-badge{
+  background:linear-gradient(135deg,#7C3AED,#4F46E5);
+  color:white;font-size:11px;font-weight:700;
+  padding:8px 18px;border-radius:8px;white-space:nowrap;flex-shrink:0;
+}
+
+/* ─── LOYALTY ─── */
+.loyalty-banner{
+  background:linear-gradient(135deg,var(--dark),var(--charcoal));
+  border-radius:18px;padding:32px 36px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;overflow:hidden;position:relative;margin-top:44px;
+}
+.loyalty-banner::after{
+  content:'';position:absolute;right:-50px;top:-50px;
+  width:260px;height:260px;
+  background:radial-gradient(circle,rgba(200,16,46,.2),transparent 70%);
+}
+.loyalty-text h2{font-family:'Cormorant Garamond',serif;font-size:26px;color:white;font-weight:700;margin-bottom:8px;position:relative;z-index:1;}
+.loyalty-text p{font-size:13px;color:rgba(255,255,255,.45);max-width:400px;line-height:1.6;position:relative;z-index:1;}
+.loyalty-prog{margin-top:14px;position:relative;z-index:1;}
+.loyalty-prog-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.35);margin-bottom:5px;}
+.loyalty-prog-bar{height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;}
+.loyalty-prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--red));border-radius:4px;transition:width 1.2s ease;}
+.loyalty-icon{font-size:72px;position:relative;z-index:1;}
+
+/* ─── OCCASION ─── */
+.occ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;}
+.occ-card{
+  background:white;border-radius:13px;padding:18px 14px;text-align:center;
+  cursor:pointer;transition:all .25s;border:1.5px solid transparent;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.occ-card:hover{border-color:var(--red);transform:translateY(-2px);}
+.occ-em{font-size:32px;margin-bottom:8px;}
+.occ-name{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:3px;}
+.occ-sub{font-size:10px;color:var(--muted);}
+
+/* ─── WALLET ZONE ─── */
+.wallet-list{display:flex;flex-direction:column;gap:10px;}
+.wallet-item{
+  background:white;border-radius:12px;padding:14px 16px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);cursor:pointer;
+  transition:all .2s;border-left:3px solid transparent;
+}
+.wallet-item.priority-1{border-left-color:var(--red);}
+.wallet-item.priority-2{border-left-color:var(--gold);}
+.wallet-item.priority-3{border-left-color:#22C55E;}
+.wallet-item:hover{transform:translateX(3px);}
+.wallet-em{font-size:28px;}
+.wallet-info{flex:1;}
+.wallet-name{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.wallet-meta{font-size:11px;color:var(--muted);}
+.wallet-priority{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.wallet-priority.p1{background:rgba(200,16,46,.1);color:var(--red);}
+.wallet-priority.p2{background:rgba(212,168,67,.15);color:#92691A;}
+.wallet-priority.p3{background:rgba(34,197,94,.1);color:#16A34A;}
+.wallet-exp{font-size:10px;color:var(--muted);text-align:right;}
+.wallet-exp strong{display:block;font-size:12px;color:var(--red);}
+
+/* ─── SEGMENT HUD ─── */
+.segment-hud{
+  position:fixed;bottom:20px;left:20px;
+  background:var(--dark);border:1px solid rgba(212,168,67,.25);
+  border-radius:13px;padding:12px 16px;z-index:300;min-width:230px;
+  box-shadow:0 8px 40px rgba(0,0,0,.3);
+}
+.hud-title{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.hud-title::before{content:'';width:6px;height:6px;background:#22C55E;border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.hud-row{display:flex;justify-content:space-between;margin-bottom:5px;}
+.hud-k{font-size:10px;color:rgba(255,255,255,.35);}
+.hud-v{font-size:10px;color:white;font-weight:600;}
+.hud-v.gold{color:var(--gold);}
+.hud-v.red{color:#ff6b6b;}
+.hud-v.green{color:#69d17a;}
+.hud-v.purple{color:#a78bfa;}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dark);padding:36px;margin-top:60px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:28px;
+  border-top:1px solid rgba(212,168,67,.12);
+}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold);margin-bottom:8px;}
+.f-logo span{color:var(--red);}
+footer p{font-size:11px;color:rgba(255,255,255,.3);line-height:1.6;}
+footer h4{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.35);font-weight:700;margin-bottom:10px;}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+footer ul li a{font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;}
+footer ul li a:hover{color:var(--gold);}
+
+/* color utils */
+.bg-pink{background:linear-gradient(135deg,#FFE4E4,#FECDD3);}
+.bg-yellow{background:linear-gradient(135deg,#FEF9C3,#FDE68A);}
+.bg-green{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);}
+.bg-blue{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);}
+.bg-orange{background:linear-gradient(135deg,#FFEDD5,#FED7AA);}
+.bg-purple{background:linear-gradient(135deg,#EDE9FE,#DDD6FE);}
+.bg-teal{background:linear-gradient(135deg,#CCFBF1,#99F6E4);}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.grid4 .rcard{animation:slideUp .45s ease both;}
+.grid4 .rcard:nth-child(1){animation-delay:.05s;}
+.grid4 .rcard:nth-child(2){animation-delay:.1s;}
+.grid4 .rcard:nth-child(3){animation-delay:.15s;}
+.grid4 .rcard:nth-child(4){animation-delay:.2s;}
+
+/* demo-mode label when roadmap */
+.roadmap-note{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);
+  color:#7C3AED;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <button class="toast-close" onclick="this.parentElement.classList.remove('show')">×</button>
+  <div class="toast-icon" id="t-icon">🍜</div>
+  <div>
+    <div class="toast-title" id="t-title">Linh, bữa trưa đang chờ! 🕛</div>
+    <div class="toast-body" id="t-body">Phở Hà Nội của bạn đang chờ — thành viên Vàng giảm 15% hôm nay!</div>
+    <div style="margin-top:5px;"><span class="ct-live-badge">CleverTap Journey</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">G<span>G</span>G Vietnam</div>
+  <ul>
+    <li><a href="#">Thương Hiệu</a></li>
+    <li><a href="#">Đặt Bàn</a></li>
+    <li><a href="#">Ưu Đãi</a></li>
+    <li><a href="#">Tích Điểm</a></li>
+    <li><a href="#" class="nav-cta">Đặt Ngay</a></li>
+  </ul>
+  <div class="user-pill">
+    <div class="avatar" id="nav-av">L</div>
+    <span id="nav-nm">Linh · Thành viên Vàng</span>
+  </div>
+</nav>
+
+<!-- PERSONA BAR -->
+<div class="persona-bar">
+  <span class="persona-label">👤 Persona:</span>
+  <button class="persona-btn active" onclick="switchPersona('linh',this)">Linh — Khách hàng thân thiết</button>
+  <button class="persona-btn" onclick="switchPersona('nam',this)">Nam — Người dùng mới</button>
+  <button class="persona-btn" onclick="switchPersona('mai',this)">Mai — Khách hàng ngủ đông</button>
+  <button class="persona-btn" onclick="switchPersona('corp',this)">ABC Corp — Doanh nghiệp</button>
+  <div class="persona-seg">CleverTap Segment: <em id="seg-name">Loyal · Lunch · Gold</em></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="ct-live-badge">Personalized for You</span>
+      <span class="hero-eyebrow-text" id="hero-ey">Chào buổi trưa, Linh!</span>
+    </div>
+    <h1 id="hero-h1">Đói bụng rồi? <em>Phở đang chờ bạn.</em></h1>
+    <p class="hero-sub" id="hero-sub">Dựa trên lịch đặt hàng của bạn, chúng tôi đã chuẩn bị những món yêu thích — giao trong 25 phút.</p>
+    <div class="hero-actions">
+      <button class="btn-red" id="hero-cta">Đặt hàng ngay</button>
+      <button class="btn-ghost">Khám phá thực đơn</button>
+    </div>
+  </div>
+  <div class="hero-float">
+    <div class="brand-chip"><div class="em">🍜</div><div class="nm">Phở Hà Nội</div></div>
+    <div class="brand-chip"><div class="em">🥩</div><div class="nm">BBQ Garden</div></div>
+    <div class="brand-chip"><div class="em">🍱</div><div class="nm">Cơm Tấm Express</div></div>
+    <div class="brand-chip"><div class="em">🧋</div><div class="nm">Trà Sữa 888</div></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 1: VOUCHER WALLET (Intelligent Sorting)
+     Jacob: Not a recommendation use case (but we show it anyway as context)
+════════════════════════════════════════════ -->
+<div class="section" id="uc-wallet">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">💳 Ví Voucher của bạn</div>
+        <span class="ct-live-badge">Intelligent Wallet Sorting</span>
+      </div>
+      <div class="sec-sub">Voucher được xếp theo mức độ ưu tiên — hết hạn sớm lên đầu</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleExplain('ex-wallet')">Logic & Rules →</button>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">Priority Sorting · Live</span></div>
+    <div class="wallet-list" id="wallet-list">
+      <div class="wallet-item priority-1">
+        <div class="wallet-em">🔥</div>
+        <div class="wallet-info">
+          <div class="wallet-name">Giảm 30% Phở Hà Nội</div>
+          <div class="wallet-meta">Thương hiệu yêu thích · Áp dụng đơn từ 80k</div>
+        </div>
+        <div>
+          <span class="wallet-priority p1">Ưu tiên 1</span>
+          <div class="wallet-exp"><strong>Còn 2 ngày</strong>hết hạn</div>
+        </div>
+      </div>
+      <div class="wallet-item priority-2">
+        <div class="wallet-em">⭐</div>
+        <div class="wallet-info">
+          <div class="wallet-name">Voucher 50,000₫ BBQ Garden</div>
+          <div class="wallet-meta">Giá trị cao · Không giới hạn đơn</div>
+        </div>
+        <div>
+          <span class="wallet-priority p2">Ưu tiên 2</span>
+          <div class="wallet-exp"><strong>Còn 12 ngày</strong>hết hạn</div>
+        </div>
+      </div>
+      <div class="wallet-item priority-3">
+        <div class="wallet-em">🧋</div>
+        <div class="wallet-info">
+          <div class="wallet-name">Mua 1 tặng 1 Trà Sữa 888</div>
+          <div class="wallet-meta">Thương hiệu hay ghé · Giờ chiều</div>
+        </div>
+        <div>
+          <span class="wallet-priority p3">Ưu tiên 3</span>
+          <div class="wallet-exp"><strong>Còn 20 ngày</strong>hết hạn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-wallet">
+    <h4>💳 Intelligent Voucher Wallet Sorting</h4>
+    <ul>
+      <li><strong>Priority 1 — Expiring Soon (&lt;3 days):</strong> Surfaced first to prevent value loss. CleverTap fires "Voucher Expiry" push 48h before expiry.</li>
+      <li><strong>Priority 2 — High Value:</strong> Vouchers with largest discount amount sorted next — increases perceived wallet value.</li>
+      <li><strong>Priority 3 — Brand Affinity:</strong> Sorted by how frequently user orders from that brand (order event frequency per brand_id).</li>
+      <li>Filter: Excludes vouchers already applied or expired using event property "voucher_status = active".</li>
+      <li>CleverTap Channel: In-app wallet widget + push notification reminder 48h before expiry.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 2: SUGGESTED PICK-UP DEALS
+     Jacob: Recommendation use case — solvable with new recommendations
+════════════════════════════════════════════ -->
+<div class="section" id="uc-pickup">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🎯 Ưu đãi gợi ý cho bạn</div>
+        <span class="ct-live-badge">Suggested Pick-up Deals · Recommendations</span>
+      </div>
+      <div class="sec-sub">Voucher bạn chưa có nhưng rất có thể muốn — cá nhân hóa theo Affinity</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleExplain('ex-pickup')">Logic & Rules →</button>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">User-Based · Trending Algorithm</span></div>
+    <div class="voucher-scroll" id="pickup-deals">
+      <div class="voucher-card">
+        <div class="voucher-top"><div class="voucher-emoji">🌮</div><div><div class="voucher-title">Fusion Street<br>Khai trương</div><div class="voucher-sub">Thương hiệu mới của GGG</div></div></div>
+        <div class="voucher-body"><div class="voucher-saving">Giảm 40%</div><div class="voucher-exp">Chỉ còn 5 ngày · Đơn từ 100k</div><div class="voucher-bar"><div class="voucher-fill" style="width:72%"></div></div><div class="voucher-claimed">1,440/2,000 đã nhận</div><div class="why voucher-why">Người dùng như Linh thích thử mới</div></div>
+      </div>
+      <div class="voucher-card">
+        <div class="voucher-top"><div class="voucher-emoji">🥗</div><div><div class="voucher-title">Green Bowl<br>Healthy Set</div><div class="voucher-sub">Healthy · Light</div></div></div>
+        <div class="voucher-body"><div class="voucher-saving">Giảm 25%</div><div class="voucher-exp">Còn 10 ngày · Không giới hạn</div><div class="voucher-bar"><div class="voucher-fill" style="width:45%"></div></div><div class="voucher-claimed">900/2,000 đã nhận</div><div class="why voucher-why">Trending với nhóm 25–34 tuổi Q.1</div></div>
+      </div>
+      <div class="voucher-card">
+        <div class="voucher-top"><div class="voucher-emoji">🦐</div><div><div class="voucher-title">Hải Sản Tươi<br>Weekend Special</div><div class="voucher-sub">Cuối tuần</div></div></div>
+        <div class="voucher-body"><div class="voucher-saving">Giảm 20% + Free ship</div><div class="voucher-exp">Áp dụng T7, CN · Đơn từ 150k</div><div class="voucher-bar"><div class="voucher-fill" style="width:30%"></div></div><div class="voucher-claimed">600/2,000 đã nhận</div><div class="why voucher-why">Bạn thường đặt cuối tuần</div></div>
+      </div>
+      <div class="voucher-card">
+        <div class="voucher-top"><div class="voucher-emoji">🍱</div><div><div class="voucher-title">Cơm Tấm<br>Lunch Combo</div><div class="voucher-sub">Giờ trưa</div></div></div>
+        <div class="voucher-body"><div class="voucher-saving">Combo 69,000₫</div><div class="voucher-exp">T2–T6 · 11:00–14:00</div><div class="voucher-bar"><div class="voucher-fill" style="width:58%"></div></div><div class="voucher-claimed">1,160/2,000 đã nhận</div><div class="why voucher-why">Hot Deal giờ trưa Q.1</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-pickup">
+    <h4>🎯 Suggested Pick-up Deals Logic</h4>
+    <ul>
+      <li>Filter Step 1: Exclude all vouchers already in user's wallet (event property match on voucher_id).</li>
+      <li>Algorithm A — User-Based: Match vouchers to brands user has affinity for but hasn't redeemed yet. Affinity score = (views + orders weighted) per brand_id.</li>
+      <li>Algorithm B — Trending (Hot Voucher): Vouchers with highest claim velocity in last 48h in user's geo cluster.</li>
+      <li>CleverTap Recommendation Catalog: voucher_id, brand_id, discount_value, expiry_date, claim_count. Filtered + ranked per user.</li>
+      <li>Displayed as horizontal scroll on home screen — highest affinity match first, trending as fallback.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 3: SMART GEO-LOCATION SUGGESTION
+     Jacob: Recommendation use case — solvable
+════════════════════════════════════════════ -->
+<div class="section" id="uc-geo">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">📍 Gợi ý thông minh gần bạn</div>
+        <span class="ct-live-badge">Smart Geo-Location · Cluster Handling</span>
+      </div>
+      <div class="sec-sub">Xử lý thông minh khi bạn ở khu vực có nhiều nhà hàng GGG</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleExplain('ex-geo')">Logic & Rules →</button>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">Radius · Affinity · Voucher Priority</span></div>
+    <div class="geo-header">
+      <div class="geo-dot">📍</div>
+      <div class="geo-info">
+        <strong>Bạn đang ở: Vincom Center, Quận 1 — 6 chi nhánh GGG trong 500m</strong>
+        <span>Cluster Shopping Mall · Thời gian giao trung bình: 18 phút · 3 chi nhánh đang mở</span>
+      </div>
+      <a href="#" class="geo-change">Đổi vị trí →</a>
+    </div>
+    <div class="grid3">
+      <div class="rcard">
+        <div class="rcard-img bg-yellow"><span>🍜</span><div class="cbadge">0.1km · Có voucher</div><div class="cstar">★ 4.9</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Phở Hà Nội · Vincom B1</div>
+          <div class="rcard-name">Phở Hà Nội — Chi nhánh Vincom</div>
+          <div class="rcard-meta"><span>⏱ 10 phút</span><span class="rcard-price">Còn chỗ</span></div>
+          <div class="tags"><span class="tag">Gần nhất</span><span class="tag">Có voucher</span><span class="tag">Yêu thích</span></div>
+          <div class="why">Ưu tiên 1: Thương hiệu yêu thích + Voucher</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-orange"><span>🥩</span><div class="cbadge">0.3km</div><div class="cstar">★ 4.8</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">BBQ Garden · Tầng 4</div>
+          <div class="rcard-name">BBQ Garden — Vincom Level 4</div>
+          <div class="rcard-meta"><span>⏱ 15 phút</span><span class="rcard-price">Còn bàn</span></div>
+          <div class="tags"><span class="tag">Affinity cao</span><span class="tag">Campaign</span></div>
+          <div class="why">Ưu tiên 2: Affinity History cao nhất</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-green"><span>🌮</span><div class="cbadge">0.4km · Hot Deal</div><div class="cstar">★ 4.7</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Fusion Street · Ground Floor</div>
+          <div class="rcard-name">Fusion Street — Vincom GF</div>
+          <div class="rcard-meta"><span>⏱ 12 phút</span><span class="rcard-price">Còn bàn</span></div>
+          <div class="tags"><span class="tag">Campaign lớn</span><span class="tag">Khai trương</span></div>
+          <div class="why">Ưu tiên 3: Campaign lớn đang chạy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-geo">
+    <h4>📍 Smart Geo-Location Suggestion Logic</h4>
+    <ul>
+      <li><strong>Basic Filter:</strong> Restaurants within nearest radius from device GPS. CleverTap captures location on session start.</li>
+      <li><strong>Cluster Detection:</strong> When multiple branches detected within 500m (shopping mall / cluster), apply priority ranking instead of pure distance sort.</li>
+      <li><strong>Priority 1 — Brands with wallet vouchers:</strong> Drives voucher redemption. Cross-reference voucher_id against branch brand_id.</li>
+      <li><strong>Priority 2 — Highest Affinity Brand:</strong> User's order history per brand → affinity score. Phở Hà Nội here has highest frequency for Linh.</li>
+      <li><strong>Priority 3 — Active Campaign / Available Tables:</strong> Branch with active promotion or table availability surfaced last.</li>
+      <li>Real-time table availability integrated via POS webhook → CleverTap event "table_available" property.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 4: DYNAMIC MENU — TIME OF DAY
+     Jacob: Catalog column as filters for time slots
+════════════════════════════════════════════ -->
+<div class="section" id="uc-time">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🕐 Thực đơn theo thời điểm</div>
+        <span class="ct-live-badge">Time-of-Day · Day-of-Week Engine</span>
+      </div>
+      <div class="sec-sub">Gợi ý thay đổi theo giờ ăn và ngày trong tuần · Kết hợp voucher trong ví</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div class="time-pill" id="time-pill">🕛 Bữa Trưa · 11:30–13:30</div>
+      <button class="toggle-btn" onclick="toggleExplain('ex-time')">Logic →</button>
+    </div>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">Catalog Time-slot Filters</span></div>
+    <div class="grid4" id="time-grid">
+      <div class="rcard">
+        <div class="rcard-img bg-yellow"><span>🍜</span><div class="cbadge">Trưa #1</div><div class="cstar">★ 4.9</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Phở Hà Nội</div>
+          <div class="rcard-name">Phở Bò Tái Nạm Gầu</div>
+          <div class="rcard-meta"><span>⏱ 20 phút</span><span class="rcard-price">89,000₫</span></div>
+          <div class="tags"><span class="tag">Nhanh</span><span class="tag">Trưa</span></div>
+          <div class="why">Catalog: time_slot = lunch · Nhanh &lt;25ph</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">📣 Feedback (Roadmap)</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-orange"><span>🍱</span><div class="cbadge">Combo</div><div class="cstar">★ 4.8</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Cơm Tấm Express</div>
+          <div class="rcard-name">Cơm Tấm Đặc Biệt + Café</div>
+          <div class="rcard-meta"><span>⏱ 15 phút</span><span class="rcard-price">75,000₫</span></div>
+          <div class="tags"><span class="tag">Set Lunch</span><span class="tag">Voucher</span></div>
+          <div class="why">Voucher ví + time_slot = lunch match</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">📣 Feedback (Roadmap)</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-green"><span>🥗</span><div class="cstar">★ 4.7</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Green Bowl</div>
+          <div class="rcard-name">Buddha Bowl Gà Nướng</div>
+          <div class="rcard-meta"><span>⏱ 18 phút</span><span class="rcard-price">95,000₫</span></div>
+          <div class="tags"><span class="tag">Healthy</span><span class="tag">Light</span></div>
+          <div class="why">Affinity: healthy segment · giờ trưa</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">📣 Feedback (Roadmap)</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-blue"><span>🧋</span><div class="cbadge">After Lunch</div><div class="cstar">★ 4.9</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Trà Sữa 888</div>
+          <div class="rcard-name">Matcha Latte Trân Châu</div>
+          <div class="rcard-meta"><span>⏱ 10 phút</span><span class="rcard-price">55,000₫</span></div>
+          <div class="tags"><span class="tag">Tráng miệng</span><span class="tag">After lunch</span></div>
+          <div class="why">time_slot = post_lunch · high reorder rate</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">📣 Feedback (Roadmap)</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="toggle-btn" onclick="switchTimeSlot('lunch')">🕛 Trưa</button>
+      <button class="toggle-btn" onclick="switchTimeSlot('dinner')">🍽️ Tối</button>
+      <button class="toggle-btn" onclick="switchTimeSlot('weekend')">🎉 Cuối tuần</button>
+      <button class="toggle-btn" onclick="switchTimeSlot('latenight')">🌙 Khuya</button>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-time">
+    <h4>🕐 Time-of-Day + Day-of-Week Logic</h4>
+    <ul>
+      <li>CleverTap Catalog column "time_slot" flags each menu item: breakfast / lunch / dinner / post_lunch / late_night / weekend_special.</li>
+      <li>Device time read on session start → maps to time window → filters catalog by matching time_slot value.</li>
+      <li>Weekday vs weekend flag: Set Menu + Office Lunch shown Mon–Fri 10–13h. Buffet + Hot Pot + Grill pushed Fri–Sun 16–21h.</li>
+      <li>Voucher intersection: Items where user has matching wallet voucher get boosted rank (+20 score).</li>
+      <li>Segment overlay: Linh (lunch seeker segment) → fast delivery filter ≤25min applied automatically.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 5: PAIRING / CROSS-SELL (Side Dishes)
+     Jacob: Purchased Together + Complementary items
+════════════════════════════════════════════ -->
+<div class="section" id="uc-pairing">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🍽️ Món thêm gợi ý</div>
+        <span class="ct-live-badge">Pairing · Cross-sell · Purchased Together</span>
+      </div>
+      <div class="sec-sub">Khi xem menu hoặc quét QR tại bàn — gợi ý món tăng giá trị đơn hàng</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleExplain('ex-pairing')">Logic & Rules →</button>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">Catalog: items_often_ordered_together</span></div>
+    <div class="pairing-trigger">
+      <div class="pairing-trigger-icon">🍜</div>
+      <div class="pairing-trigger-text">
+        <strong>Bạn đang xem: Phở Bò Đặc Biệt (89,000₫)</strong>
+        <span>Khách hàng thường thêm những món sau vào đơn — tăng trải nghiệm và tiết kiệm phí ship</span>
+      </div>
+    </div>
+    <div class="grid4">
+      <div class="rcard">
+        <div class="rcard-img bg-teal"><span>🥢</span><div class="cbadge">Hay đặt cùng</div><div class="cstar">★ 4.8</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Phở Hà Nội · Thêm món</div>
+          <div class="rcard-name">Quẩy Chiên Giòn</div>
+          <div class="rcard-meta"><span>Free ship cùng đơn</span><span class="rcard-price">25,000₫</span></div>
+          <div class="why">78% đơn Phở có Quẩy — Purchased Together</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-pink"><span>🍋</span><div class="cbadge">Tương thích</div><div class="cstar">★ 4.7</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Trà Sữa 888 · Complement</div>
+          <div class="rcard-name">Chanh Muối Sả Gừng</div>
+          <div class="rcard-meta"><span>Đồ uống · Giao cùng</span><span class="rcard-price">35,000₫</span></div>
+          <div class="why">Complementary drink · 65% co-order rate</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-yellow"><span>🥟</span><div class="cstar">★ 4.6</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Phở Hà Nội · Starter</div>
+          <div class="rcard-name">Chả Giò Hải Sản</div>
+          <div class="rcard-meta"><span>Khai vị</span><span class="rcard-price">45,000₫</span></div>
+          <div class="why">Popular starter combo với Phở</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-img bg-purple"><span>🍮</span><div class="cstar">★ 4.9</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">GGG Dessert · Tráng miệng</div>
+          <div class="rcard-name">Chè Bưởi Thạch Dừa</div>
+          <div class="rcard-meta"><span>Dessert</span><span class="rcard-price">30,000₫</span></div>
+          <div class="why">Complementary dessert · +25% AOV lift</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-pairing">
+    <h4>🍽️ Pairing / Cross-sell Algorithm</h4>
+    <ul>
+      <li><strong>Trigger:</strong> Customer views menu item detail page OR scans QR code at table. Event: "menu_item_viewed" with item_id property.</li>
+      <li><strong>Algorithm A — Purchased Together:</strong> Catalog field "items_often_ordered_together" lists item_ids co-purchased ≥50% of the time. Quẩy with Phở: 78% co-order.</li>
+      <li><strong>Algorithm B — Complementary:</strong> Category-level rules: Soup → suggest Drink + Starter + Dessert. Maintained as catalog metadata.</li>
+      <li><strong>QR Table Trigger:</strong> When customer scans table QR, CleverTap event "table_scan" → real-time in-app widget shows pairings for current order items.</li>
+      <li>Average AOV uplift from pairing recommendations: +18–25% per order session.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 6: BEHAVIORAL CROSS-SELL (Brand A → Brand B)
+     Jacob: Recommendation use case — solvable
+════════════════════════════════════════════ -->
+<div class="section" id="uc-crosssell">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🔀 Khám phá thương hiệu mới</div>
+        <span class="ct-live-badge">Behavioral Cross-sell · Brand Similarity</span>
+      </div>
+      <div class="sec-sub">Giới thiệu thương hiệu mới cho khách hàng thân thiết dựa trên hành vi tương đồng</div>
+    </div>
+    <button class="toggle-btn" onclick="toggleExplain('ex-crosssell')">Logic & Rules →</button>
+  </div>
+  <div class="ct-zone-live">
+    <div class="ct-zone-label"><span class="ct-live-badge">Brand Similarity Model · User Clusters</span></div>
+    <div style="display:flex;flex-direction:column;gap:12px;" id="crosssell-list">
+      <div class="crosssell-card">
+        <div class="crosssell-from">
+          <div class="crosssell-label">Bạn yêu thích</div>
+          <div class="crosssell-brand-name">🍜 Phở Hà Nội</div>
+          <div class="crosssell-desc">Thương hiệu bạn đặt nhiều nhất · Khách hàng truyền thống · Hương vị Bắc</div>
+        </div>
+        <div class="crosssell-arrow">→</div>
+        <div class="crosssell-to">
+          <div class="crosssell-label">Bạn có thể sẽ thích</div>
+          <div class="crosssell-brand-name">🌮 Fusion Street</div>
+          <div class="crosssell-desc">Ẩm thực sáng tạo với nguyên liệu Việt Nam. Khách hàng tương đồng với Phở Hà Nội.</div>
+          <div class="crosssell-sim">
+            <span class="sim-tag">Cùng khách hàng cơ sở</span>
+            <span class="sim-tag">Giá tương đương</span>
+            <span class="sim-tag">Cùng khu vực</span>
+          </div>
+          <div class="why" style="margin-top:8px;">82% khách Phở cũng đặt Fusion sau 3 tháng</div>
+        </div>
+      </div>
+      <div class="crosssell-card">
+        <div class="crosssell-from">
+          <div class="crosssell-label">Bạn yêu thích</div>
+          <div class="crosssell-brand-name">🧋 Trà Sữa 888</div>
+          <div class="crosssell-desc">Hay đặt sau bữa trưa · Tần suất cao · Đồ uống</div>
+        </div>
+        <div class="crosssell-arrow">→</div>
+        <div class="crosssell-to">
+          <div class="crosssell-label">Thử ngay</div>
+          <div class="crosssell-brand-name">🥗 Green Bowl</div>
+          <div class="crosssell-desc">Healthy dining với đồ uống lành mạnh. Nhóm khách hàng Trà Sữa 888 có overlap 70% với Green Bowl.</div>
+          <div class="crosssell-sim">
+            <span class="sim-tag">Healthy lifestyle</span>
+            <span class="sim-tag">25–34 tuổi</span>
+            <span class="sim-tag">Giờ trưa</span>
+          </div>
+          <div class="why" style="margin-top:8px;">70% overlap trong user cluster phân tích</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel live-panel" id="ex-crosssell">
+    <h4>🔀 Behavioral Cross-sell Logic</h4>
+    <ul>
+      <li><strong>Input:</strong> User's primary brand = Brand A (highest order frequency). CleverTap identifies via "Order Placed" event aggregation by brand_id.</li>
+      <li><strong>Process:</strong> Find Brand B with highest customer overlap — users who order Brand A AND Brand B. CleverTap cohort analysis on user clusters.</li>
+      <li><strong>Similarity signals:</strong> Price range overlap, cuisine category proximity, same delivery time window, geo cluster match, demographic profile match.</li>
+      <li><strong>Output:</strong> "Customers like you also love [Brand B]" widget on homepage and post-order screen.</li>
+      <li>CleverTap Journey: After 5th order from Brand A, trigger in-app card introducing Brand B with welcome voucher.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- LOYALTY -->
+<div class="loyalty-banner">
+  <div class="loyalty-text">
+    <h2 id="loy-title">Linh — Còn 350 điểm nữa là Bạch Kim! 🏆</h2>
+    <p id="loy-sub">Bạn đã tích 1,650 điểm GGG Stars. Tiếp tục đặt hàng để mở khóa ưu đãi độc quyền Bạch Kim.</p>
+    <div class="loyalty-prog">
+      <div class="loyalty-prog-labels"><span>Vàng · 1,650 pts</span><span>Bạch Kim · 2,000 pts</span></div>
+      <div class="loyalty-prog-bar"><div class="loyalty-prog-fill" id="loy-bar" style="width:82.5%"></div></div>
+    </div>
+  </div>
+  <div class="loyalty-icon">⭐</div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 7: EXPLICIT FEEDBACK (ROADMAP)
+     Jacob: Reinforcement Learning · Roadmap
+════════════════════════════════════════════ -->
+<div class="section" id="uc-explicit">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">👎 Kiểm soát gợi ý của bạn</div>
+        <span class="ct-roadmap-badge">Explicit Feedback · Roadmap RL</span>
+      </div>
+      <div class="sec-sub">Người dùng chủ động báo cáo "Không thích" hoặc "Đã ăn rồi" để cải thiện thuật toán</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="roadmap-note">◆ Roadmap — RL Demo</span>
+      <button class="toggle-btn" onclick="toggleExplain('ex-explicit')">Logic →</button>
+    </div>
+  </div>
+  <div class="ct-zone-roadmap">
+    <div class="ct-zone-label"><span class="ct-roadmap-badge">Reinforcement Learning · Coming Soon</span></div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">💡 <em>Hover over any food card to see the feedback interface. Click to simulate the RL signal.</em></p>
+    <div class="grid4">
+      <div class="rcard" id="fb-card-1">
+        <div class="rcard-img bg-pink"><span>🥩</span><div class="cstar">★ 4.7</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">BBQ Garden</div>
+          <div class="rcard-name">Bò Nướng Lá Lốt</div>
+          <div class="rcard-meta"><span>⏱ 25 phút</span><span class="rcard-price">125,000₫</span></div>
+          <div class="why">Gợi ý dựa trên lịch sử BBQ</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">Cải thiện gợi ý cho bạn</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike','fb-card-1')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate','fb-card-1')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard" id="fb-card-2">
+        <div class="rcard-img bg-orange"><span>🦐</span><div class="cstar">★ 4.8</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Hải Sản Tươi</div>
+          <div class="rcard-name">Tôm Hùm Hấp Bia</div>
+          <div class="rcard-meta"><span>⏱ 30 phút</span><span class="rcard-price">350,000₫</span></div>
+          <div class="why">Trending · Giá cao · Cuối tuần</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">Cải thiện gợi ý cho bạn</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike','fb-card-2')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate','fb-card-2')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard" id="fb-card-3">
+        <div class="rcard-img bg-purple"><span>🌮</span><div class="cstar">★ 4.6</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">Fusion Street</div>
+          <div class="rcard-name">Tacos Bò Kobe Việt</div>
+          <div class="rcard-meta"><span>⏱ 22 phút</span><span class="rcard-price">135,000₫</span></div>
+          <div class="why">Cross-sell từ Phở Hà Nội affinity</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">Cải thiện gợi ý cho bạn</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike','fb-card-3')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate','fb-card-3')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+      <div class="rcard" id="fb-card-4">
+        <div class="rcard-img bg-teal"><span>🍮</span><div class="cstar">★ 4.9</div></div>
+        <div class="rcard-body">
+          <div class="rcard-brand">GGG Desserts</div>
+          <div class="rcard-name">Bánh Flan Caramel</div>
+          <div class="rcard-meta"><span>⏱ 12 phút</span><span class="rcard-price">45,000₫</span></div>
+          <div class="why">Complementary dessert gợi ý</div>
+        </div>
+        <div class="feedback-overlay">
+          <div class="fb-title">Cải thiện gợi ý cho bạn</div>
+          <div class="fb-btns">
+            <button class="fb-btn fb-dislike" onclick="handleFeedback(this,'dislike','fb-card-4')">👎 Không thích</button>
+            <button class="fb-btn fb-ate" onclick="handleFeedback(this,'ate','fb-card-4')">✅ Đã ăn rồi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel" id="ex-explicit">
+    <h4>👎 Explicit Feedback — Reinforcement Learning</h4>
+    <ul>
+      <li><strong>Trigger:</strong> User taps "×" (Don't Like) or "Already Ate" button on any recommendation widget.</li>
+      <li><strong>Immediate Action:</strong> Card hides instantly (opacity → 0, next item slides in). No friction for the user.</li>
+      <li><strong>RL Signal sent to CleverTap:</strong> Event "recommendation_feedback" with properties: item_id, feedback_type (dislike/ate), recommendation_source, position_in_list.</li>
+      <li><strong>Affinity Score Update:</strong> "Dislike" → lower brand_affinity score by -0.3. "Already Ate" → temporary exclusion for 7 days, then re-eligible.</li>
+      <li><strong>Exclusion List:</strong> Item added to user's personal exclusion list — never shown again until explicitly cleared.</li>
+      <li>This is CleverTap Recommendations Roadmap item — Intellinode RL engine will process these signals to re-rank future recommendations.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 8: IMPLICIT FEEDBACK (ROADMAP)
+     Jacob: Reinforcement Learning · Roadmap
+════════════════════════════════════════════ -->
+<div class="section" id="uc-implicit">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">📊 Học ngầm từ hành vi</div>
+        <span class="ct-roadmap-badge">Implicit Feedback · Auto Re-ranking · Roadmap</span>
+      </div>
+      <div class="sec-sub">Hệ thống tự học khi gợi ý được hiển thị 3+ lần mà không được nhấp — tự động thay thế</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="roadmap-note">◆ Roadmap — RL Demo</span>
+      <button class="toggle-btn" onclick="toggleExplain('ex-implicit')">Logic →</button>
+    </div>
+  </div>
+  <div class="ct-zone-roadmap">
+    <div class="ct-zone-label"><span class="ct-roadmap-badge">Auto Replace · CTR Tracking · Re-ranking</span></div>
+    <div class="implicit-demo" id="implicit-demo">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">
+        💡 <em>Click "Simulate View" to increment impression count. At 3 impressions without click → system auto-replaces with a better item.</em>
+      </div>
+      <div class="impl-row" id="impl-row-1">
+        <div class="impl-item"><div class="impl-emoji">🥩</div><div><div class="impl-name">Bò Nướng Lá Lốt</div><div class="impl-brand">BBQ Garden · Gợi ý lúc 11:30</div></div></div>
+        <div class="impl-bar-wrap">
+          <div class="impl-bar-label"><span>Lần hiện</span><span id="impl-count-1">0/3</span></div>
+          <div class="impl-bar"><div class="impl-bar-fill" id="impl-fill-1" style="width:0%;background:#EF4444;"></div></div>
+        </div>
+        <div class="impl-shown" id="impl-status-1">Chưa xem</div>
+        <button class="impl-action impl-replace" onclick="simulateView(1)">👁 Simulate View</button>
+      </div>
+      <div class="impl-row" id="impl-row-2">
+        <div class="impl-item"><div class="impl-emoji">🌮</div><div><div class="impl-name">Tacos Kobe Fusion</div><div class="impl-brand">Fusion Street · Gợi ý lúc 12:00</div></div></div>
+        <div class="impl-bar-wrap">
+          <div class="impl-bar-label"><span>Lần hiện</span><span id="impl-count-2">0/3</span></div>
+          <div class="impl-bar"><div class="impl-bar-fill" id="impl-fill-2" style="width:0%;background:#EF4444;"></div></div>
+        </div>
+        <div class="impl-shown" id="impl-status-2">Chưa xem</div>
+        <button class="impl-action impl-replace" onclick="simulateView(2)">👁 Simulate View</button>
+      </div>
+      <div class="impl-row" id="impl-row-3">
+        <div class="impl-item"><div class="impl-emoji">🦐</div><div><div class="impl-name">Tôm Hùm Hấp Bia</div><div class="impl-brand">Hải Sản Tươi · Gợi ý lúc 12:15</div></div></div>
+        <div class="impl-bar-wrap">
+          <div class="impl-bar-label"><span>Lần hiện</span><span id="impl-count-3">1/3</span></div>
+          <div class="impl-bar"><div class="impl-bar-fill" id="impl-fill-3" style="width:33%;background:#F59E0B;"></div></div>
+        </div>
+        <div class="impl-shown" id="impl-status-3">1 lần · Cảnh báo</div>
+        <button class="impl-action impl-replace" onclick="simulateView(3)">👁 Simulate View</button>
+      </div>
+    </div>
+  </div>
+  <div class="explain-panel" id="ex-implicit">
+    <h4>📊 Implicit Feedback — Auto Re-ranking</h4>
+    <ul>
+      <li><strong>Signal tracked:</strong> "recommendation_impression" event fires each time an item is displayed in the recommendation zone for that user.</li>
+      <li><strong>Threshold rule:</strong> If impression_count ≥ 3 AND click_count = 0 → item flagged as "low relevance" for this user.</li>
+      <li><strong>Action:</strong> CleverTap Intellinode automatically replaces flagged item with next-best candidate from ranking model.</li>
+      <li><strong>Re-ranking signal:</strong> Impression-without-click → negative weight added to item_score for that user's profile. Score decreases: item moves down in the ranked list.</li>
+      <li><strong>No user action needed:</strong> This is fully automatic — the system learns passively from non-engagement behavior.</li>
+      <li>Intellinode RL engine processes these signals batch-nightly initially, moving toward real-time scoring on the roadmap.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     USE CASE 9: A/B TESTING — INTELLINODE
+     Jacob: Intellinode — coming to campaigns too
+════════════════════════════════════════════ -->
+<div class="section" id="uc-abtest">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🧪 Đánh giá hiệu quả — A/B Testing</div>
+        <span class="ct-roadmap-badge">Intellinode · A/B Evaluation · Roadmap</span>
+      </div>
+      <div class="sec-sub">So sánh CTR và Conversion giữa các thuật toán · Tự động chọn thuật toán tốt nhất</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span class="roadmap-note">◆ Intellinode — Shortly Available</span>
+      <button class="toggle-btn" onclick="toggleExplain('ex-abtest')">Logic →</button>
+    </div>
+  </div>
+  <div class="ct-zone-roadmap">
+    <div class="ct-zone-label"><span class="ct-roadmap-badge">Intellinode — Algorithm Competition</span></div>
+    <div class="ab-grid">
+      <div class="ab-card">
+        <div class="ab-header">
+          <div>
+            <div class="ab-variant a">Variant A — User-Based</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px;">Personalized · Affinity Model</div>
+          </div>
+        </div>
+        <div class="ab-algo">Algorithm: Collaborative filtering based on user's order history and demographic cluster matching.</div>
+        <div class="ab-metrics">
+          <div class="ab-metric"><span class="ab-metric-label">CTR</span><span class="ab-metric-val">8.4%</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Conversion</span><span class="ab-metric-val">3.2%</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Avg Order Value</span><span class="ab-metric-val">112,000₫</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Sample Size</span><span class="ab-metric-val">12,450 users</span></div>
+        </div>
+        <div class="ab-bar-row">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Conversion Rate</div>
+          <div class="ab-stat-bar"><div class="ab-stat-fill-a" style="width:32%"></div></div>
+        </div>
+      </div>
+      <div class="ab-card" style="border:1.5px solid rgba(34,197,94,.3);">
+        <div class="ab-header">
+          <div>
+            <div class="ab-variant b">Variant B — Trending</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px;">Popularity-based · Viral Signal</div>
+          </div>
+          <span class="ab-winner-badge">🏆 WINNER</span>
+        </div>
+        <div class="ab-algo">Algorithm: Trending items by claim velocity + social proof signals in user's geo cluster (last 48h).</div>
+        <div class="ab-metrics">
+          <div class="ab-metric"><span class="ab-metric-label">CTR</span><span class="ab-metric-val win">11.7%</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Conversion</span><span class="ab-metric-val win">4.8%</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Avg Order Value</span><span class="ab-metric-val win">128,000₫</span></div>
+          <div class="ab-metric"><span class="ab-metric-label">Sample Size</span><span class="ab-metric-val">12,538 users</span></div>
+        </div>
+        <div class="ab-bar-row">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Conversion Rate</div>
+          <div class="ab-stat-bar"><div class="ab-stat-fill-b" style="width:48%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="intellinode-banner">
+      <div class="intellinode-text">
+        <h3>⚡ Intellinode — Tự động chọn thuật toán thắng</h3>
+        <p>Intellinode của CleverTap chạy nhiều chiến lược gợi ý song song, đo lường CTR và Conversion theo thời gian thực, và tự động phân phối 100% traffic về thuật toán thắng — không cần can thiệp thủ công. Sắp có trong Campaigns.</p>
+      </div>
+      <div class="intellinode-badge">◆ Intellinode · Coming Soon</div>
+    </div>
+  </div>
+  <div class="explain-panel" id="ex-abtest">
+    <h4>🧪 A/B Testing — Intellinode Evaluation</h4>
+    <ul>
+      <li><strong>Setup:</strong> Create 2+ Recommendation variants in CleverTap — each uses different algorithm (User-Based vs. Trending vs. Content-Based).</li>
+      <li><strong>Traffic split:</strong> Intellinode randomly assigns users to variants. Split configurable: 50/50, 70/30, etc. Minimum sample size auto-calculated for statistical significance.</li>
+      <li><strong>Metrics tracked:</strong> Impression → Click (CTR) → Order Placed (Conversion) → Revenue per session. All measured per variant via CleverTap event funnel.</li>
+      <li><strong>Auto-winner selection:</strong> When statistical significance reached (95% confidence), Intellinode automatically routes 100% traffic to winning variant.</li>
+      <li><strong>Coming to Campaigns:</strong> Same Intellinode engine will run A/B on push notification copy, email subject lines, and journey variants — not just recommendations.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- OCCASION -->
+<div class="section" id="uc-occasion">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label-row">
+        <div class="sec-title">🎉 Đặt cho dịp đặc biệt</div>
+        <span class="ct-live-badge">Occasion · Booking Context Segmentation</span>
+      </div>
+      <div class="sec-sub">Trải nghiệm được cá nhân hóa cho từng khoảnh khắc — từ họp văn phòng đến sinh nhật</div>
+    </div>
+  </div>
+  <div class="occ-grid">
+    <div class="occ-card"><div class="occ-em">🏢</div><div class="occ-name">Họp văn phòng</div><div class="occ-sub">Set menu 5–20 người</div></div>
+    <div class="occ-card"><div class="occ-em">💑</div><div class="occ-name">Hẹn hò</div><div class="occ-sub">Không gian riêng tư</div></div>
+    <div class="occ-card"><div class="occ-em">🎂</div><div class="occ-name">Sinh nhật</div><div class="occ-sub">Bánh kem miễn phí 6+</div></div>
+    <div class="occ-card"><div class="occ-em">👨‍👩‍👧‍👦</div><div class="occ-name">Gia đình</div><div class="occ-sub">Thân thiện trẻ em</div></div>
+    <div class="occ-card"><div class="occ-em">🍻</div><div class="occ-name">Bạn bè</div><div class="occ-sub">Không gian rộng · Bia</div></div>
+    <div class="occ-card"><div class="occ-em">📦</div><div class="occ-name">Giao tận nơi</div><div class="occ-sub">Giao nhanh 25 phút</div></div>
+  </div>
+</div>
+
+</main>
+
+<!-- HUD -->
+<div class="segment-hud">
+  <div class="hud-title">CleverTap · Live User Profile</div>
+  <div class="hud-row"><span class="hud-k">User</span><span class="hud-v gold" id="hud-u">Linh · 28F · Q.1 HCM</span></div>
+  <div class="hud-row"><span class="hud-k">RFM</span><span class="hud-v green" id="hud-rfm">R1·F5·M4 — Loyal</span></div>
+  <div class="hud-row"><span class="hud-k">LTV Tier</span><span class="hud-v gold" id="hud-ltv">Gold · 1,650 pts</span></div>
+  <div class="hud-row"><span class="hud-k">Churn Risk</span><span class="hud-v green" id="hud-churn">Low · 4%</span></div>
+  <div class="hud-row"><span class="hud-k">Active Journey</span><span class="hud-v" id="hud-j">Loyalty Upgrade</span></div>
+  <div class="hud-row"><span class="hud-k">Last Event</span><span class="hud-v" id="hud-ev">App Open · 12:03</span></div>
+</div>
+
+<footer>
+  <div>
+    <div class="f-logo">G<span>G</span>G Vietnam</div>
+    <p>Hệ thống nhà hàng đa thương hiệu hàng đầu Việt Nam.<br>7 thương hiệu · 42 chi nhánh · 500,000+ thực khách.</p>
+  </div>
+  <div>
+    <h4>Thương Hiệu</h4>
+    <ul>
+      <li><a href="#">Phở Hà Nội</a></li>
+      <li><a href="#">BBQ Garden</a></li>
+      <li><a href="#">Cơm Tấm Express</a></li>
+      <li><a href="#">Trà Sữa 888</a></li>
+      <li><a href="#">Green Bowl · Fusion Street · Hải Sản Tươi</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>CleverTap Use Cases</h4>
+    <ul>
+      <li><a href="#uc-wallet">💳 Intelligent Wallet</a></li>
+      <li><a href="#uc-pickup">🎯 Pick-up Deals</a></li>
+      <li><a href="#uc-geo">📍 Smart Geo</a></li>
+      <li><a href="#uc-time">🕐 Time-of-Day</a></li>
+      <li><a href="#uc-pairing">🍽️ Pairing / Cross-sell</a></li>
+      <li><a href="#uc-crosssell">🔀 Brand Cross-sell</a></li>
+      <li><a href="#uc-explicit">👎 Explicit Feedback ◆</a></li>
+      <li><a href="#uc-implicit">📊 Implicit Feedback ◆</a></li>
+      <li><a href="#uc-abtest">🧪 A/B Intellinode ◆</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// ─── PERSONA DATA ───
+const P = {
+  linh: {
+    av:'L', nm:'Linh · Thành viên Vàng',
+    ey:'Chào buổi trưa, Linh!',
+    h1:'Đói bụng rồi? <em>Phở đang chờ bạn.</em>',
+    sub:'Dựa trên lịch đặt hàng của bạn, chúng tôi đã chuẩn bị những món yêu thích — giao trong 25 phút.',
+    cta:'Đặt hàng ngay',
+    loy:'Linh — Còn 350 điểm nữa là Bạch Kim! 🏆',
+    loySub:'Bạn đã tích 1,650 điểm GGG Stars. Tiếp tục để mở khóa ưu đãi Bạch Kim.',
+    loyPct:'82.5%', seg:'Loyal · Lunch · Gold',
+    hud:{u:'Linh · 28F · Q.1 HCM',rfm:'R1·F5·M4 — Loyal',ltv:'Gold · 1,650 pts',churn:'Low · 4%',j:'Loyalty Upgrade',ev:'App Open · 12:03'},
+    churnClass:'green',
+    ti:'🍜', tt:'Linh, bữa trưa sắp đến! 🕛', tb:'Phở Hà Nội của bạn — thành viên Vàng giảm 15% hôm nay!'
+  },
+  nam: {
+    av:'N', nm:'Nam · Thành viên Mới',
+    ey:'Chào mừng đến GGG, Nam!',
+    h1:'Khám phá <em>ẩm thực Việt Nam</em> cùng chúng tôi.',
+    sub:'Bạn mới tham gia! Nhận ngay voucher 50,000₫ cho đơn hàng đầu tiên từ bất kỳ thương hiệu GGG nào.',
+    cta:'Nhận voucher ngay',
+    loy:'Nam — Bắt đầu hành trình GGG Stars! ⭐',
+    loySub:'Đặt đơn đầu tiên để nhận 200 điểm chào mừng. Tích điểm để mở khóa ưu đãi thành viên.',
+    loyPct:'5%', seg:'New User · Onboarding · 0 Orders',
+    hud:{u:'Nam · 24M · Q.3 HCM',rfm:'R— · F0 · M0 — New',ltv:'New · 0 pts',churn:'N/A',j:'New User Onboarding',ev:'Sign Up · Today'},
+    churnClass:'',
+    ti:'🎁', tt:'Chào mừng Nam đến GGG! 🎉', tb:'50,000₫ voucher đã thêm vào ví. Đặt ngay trước 24h!'
+  },
+  mai: {
+    av:'M', nm:'Mai · Thành viên Bạc',
+    ey:'Lâu lắm mới gặp, Mai! 👋',
+    h1:'Chúng tôi <em>nhớ bạn lắm!</em> Có nhiều món mới.',
+    sub:'Bạn chưa đặt hàng 45 ngày. Có rất nhiều món mới và một ưu đãi đặc biệt để chào đón bạn quay lại!',
+    cta:'Xem ưu đãi quay lại',
+    loy:'Mai — Điểm của bạn sắp hết hạn! ⚠️',
+    loySub:'800 điểm GGG Stars hết hạn sau 15 ngày. Đặt ngay để giữ điểm!',
+    loyPct:'40%', seg:'Lapsed · Win-back · At Risk · D45',
+    hud:{u:'Mai · 32F · Q.7 HCM',rfm:'R4·F2·M3 — At Risk',ltv:'Silver · 800 pts',churn:'HIGH · 68%',j:'Win-back D45 Campaign',ev:'Email Open · Yesterday'},
+    churnClass:'red',
+    ti:'💌', tt:'Mai, chúng tôi nhớ bạn! 🥺', tb:'Quay lại hôm nay — giảm 20% toàn bộ đơn. Chỉ còn 48 giờ!'
+  },
+  corp: {
+    av:'A', nm:'ABC Corp · Doanh nghiệp',
+    ey:'Chào buổi sáng, Công ty ABC!',
+    h1:'Đặt <em>bữa ăn văn phòng</em> cho cả team.',
+    sub:'Tài khoản doanh nghiệp: 45 nhân viên · Ngân sách tháng: 15,000,000₫ · Đã dùng: 8,200,000₫',
+    cta:'Đặt set văn phòng',
+    loy:'ABC Corp — Tích lũy 12,400 điểm doanh nghiệp! 💼',
+    loySub:'Tài khoản doanh nghiệp nhận 2x điểm. Đổi điểm thành voucher tặng nhân viên.',
+    loyPct:'62%', seg:'B2B Corporate · High Volume · Monthly Billing',
+    hud:{u:'ABC Corp · B2B · Q.1 HCM',rfm:'R1·F4·M5 — Corporate',ltv:'Enterprise · 12,400 pts',churn:'Low · 2%',j:'Corporate Upsell Flow',ev:'Bulk Order · Mon 8:30'},
+    churnClass:'green',
+    ti:'🏢', tt:'Đặt hàng cho cuộc họp hôm nay?', tb:'Phòng họp 10:00 — Set breakfast 12 người từ Phở Hà Nội. Giao lúc 9:30?'
+  }
+};
+
+function switchPersona(k, btn){
+  document.querySelectorAll('.persona-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const p = P[k];
+  document.getElementById('nav-av').textContent = p.av;
+  document.getElementById('nav-nm').textContent = p.nm;
+  document.getElementById('hero-ey').textContent = p.ey;
+  document.getElementById('hero-h1').innerHTML = p.h1;
+  document.getElementById('hero-sub').textContent = p.sub;
+  document.getElementById('hero-cta').textContent = p.cta;
+  document.getElementById('loy-title').textContent = p.loy;
+  document.getElementById('loy-sub').textContent = p.loySub;
+  document.getElementById('loy-bar').style.width = p.loyPct;
+  document.getElementById('seg-name').textContent = p.seg;
+  const h = p.hud;
+  document.getElementById('hud-u').textContent = h.u;
+  document.getElementById('hud-rfm').textContent = h.rfm;
+  document.getElementById('hud-ltv').textContent = h.ltv;
+  document.getElementById('hud-churn').textContent = h.churn;
+  document.getElementById('hud-churn').className = 'hud-v ' + p.churnClass;
+  document.getElementById('hud-j').textContent = h.j;
+  document.getElementById('hud-ev').textContent = h.ev;
+  document.getElementById('t-icon').textContent = p.ti;
+  document.getElementById('t-title').textContent = p.tt;
+  document.getElementById('t-body').textContent = p.tb;
+  showToast();
+}
+
+function showToast(){
+  const t = document.getElementById('toast');
+  t.classList.remove('show');
+  setTimeout(()=>t.classList.add('show'),200);
+  setTimeout(()=>t.classList.remove('show'),5000);
+}
+
+function toggleExplain(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+// ─── EXPLICIT FEEDBACK ───
+const replacements = {
+  'fb-card-1': {em:'🍜', brand:'Phở Hà Nội', name:'Phở Bò Đặc Biệt', why:'Thay thế dựa trên Affinity · RL signal', bg:'bg-yellow'},
+  'fb-card-2': {em:'🥗', brand:'Green Bowl', name:'Salad Cá Hồi Quinoa', why:'Re-ranked · Healthy cluster match', bg:'bg-green'},
+  'fb-card-3': {em:'🍱', brand:'Cơm Tấm Express', name:'Cơm Tấm Sườn Bì Chả', why:'Fallback: top item this time slot', bg:'bg-orange'},
+  'fb-card-4': {em:'🧋', brand:'Trà Sữa 888', name:'Trà Đào Cam Sả', why:'High reorder · Affinity match', bg:'bg-pink'},
+};
+
+function handleFeedback(btn, type, cardId){
+  const card = document.getElementById(cardId);
+  if(!card) return;
+  const r = replacements[cardId];
+  const overlay = btn.closest('.feedback-overlay');
+  overlay.innerHTML = '<div style="color:white;font-size:18px;margin-bottom:6px;">'+(type==='dislike'?'👎':'✅')+'</div><div style="color:white;font-size:11px;font-weight:700;">RL Signal Sent!</div><div style="color:rgba(255,255,255,.6);font-size:10px;margin-top:3px;">Affinity updated · Item replacing...</div>';
+  setTimeout(()=>{
+    card.style.opacity='0';card.style.transform='scale(.95)';card.style.transition='all .4s';
+    setTimeout(()=>{
+      const img = card.querySelector('.rcard-img');
+      img.className = 'rcard-img '+r.bg;
+      img.innerHTML = '<span>'+r.em+'</span>';
+      card.querySelector('.rcard-brand').textContent = r.brand;
+      card.querySelector('.rcard-name').textContent = r.name;
+      card.querySelector('.why').textContent = r.why;
+      overlay.innerHTML = '<div class="fb-title">Cải thiện gợi ý cho bạn</div><div class="fb-btns"><button class="fb-btn fb-dislike" onclick="handleFeedback(this,\'dislike\',\''+cardId+'\')">👎 Không thích</button><button class="fb-btn fb-ate" onclick="handleFeedback(this,\'ate\',\''+cardId+'\')">✅ Đã ăn rồi</button></div>';
+      card.style.opacity='1';card.style.transform='scale(1)';
+    },400);
+  },1200);
+}
+
+// ─── IMPLICIT FEEDBACK ───
+const implCounts = {1:0, 2:0, 3:1};
+const implReplacements = {
+  1:{name:'Phở Bò Đặc Biệt',brand:'Phở Hà Nội · RL thay thế'},
+  2:{name:'Cơm Tấm Sườn Bì',brand:'Cơm Tấm Express · RL thay thế'},
+  3:{name:'Bánh Mì Thịt Nướng',brand:'Fusion Street · RL thay thế'}
+};
+
+function simulateView(n){
+  implCounts[n]++;
+  const count = implCounts[n];
+  const fill = document.getElementById('impl-fill-'+n);
+  const countEl = document.getElementById('impl-count-'+n);
+  const status = document.getElementById('impl-status-'+n);
+  const row = document.getElementById('impl-row-'+n);
+  const pct = Math.min(count/3*100,100);
+  fill.style.width = pct+'%';
+  fill.style.background = count===1?'#F59E0B':count===2?'#EF4444':'#7C3AED';
+  countEl.textContent = count+'/3';
+  if(count===1){ status.textContent='1 lần · Theo dõi';}
+  else if(count===2){ status.textContent='2 lần · ⚠️ Ngưỡng gần';}
+  else if(count>=3){
+    status.textContent='3 lần → Thay thế!';
+    setTimeout(()=>{
+      const r = implReplacements[n];
+      row.style.background='rgba(139,92,246,.08)';
+      row.querySelector('.impl-name').textContent = r.name;
+      row.querySelector('.impl-brand').textContent = r.brand;
+      fill.style.width='0%'; fill.style.background='#22C55E';
+      countEl.textContent = '0/3';
+      status.innerHTML = '✅ RL Replaced';
+      implCounts[n] = 0;
+    },800);
+  }
+}
+
+// ─── TIME SLOT DEMO ───
+const timeSlots = {
+  lunch:{pill:'🕛 Bữa Trưa · 11:30–13:30', items:[
+    {bg:'bg-yellow',em:'🍜',badge:'Trưa #1',brand:'Phở Hà Nội',name:'Phở Bò Tái Nạm Gầu',time:'20 phút',price:'89,000₫',tags:['Nhanh','Trưa'],why:'Catalog: time_slot = lunch'},
+    {bg:'bg-orange',em:'🍱',badge:'Set Lunch',brand:'Cơm Tấm Express',name:'Cơm Tấm + Café',time:'15 phút',price:'75,000₫',tags:['Set Lunch','Voucher'],why:'Voucher ví + lunch match'},
+    {bg:'bg-green',em:'🥗',badge:'',brand:'Green Bowl',name:'Buddha Bowl Gà',time:'18 phút',price:'95,000₫',tags:['Healthy'],why:'Healthy segment · trưa'},
+    {bg:'bg-blue',em:'🧋',badge:'After Lunch',brand:'Trà Sữa 888',name:'Matcha Latte',time:'10 phút',price:'55,000₫',tags:['After lunch'],why:'Post-lunch high reorder'},
+  ]},
+  dinner:{pill:'🍽️ Bữa Tối · 17:00–21:00', items:[
+    {bg:'bg-pink',em:'🥩',badge:'Tối #1',brand:'BBQ Garden',name:'Set Nướng 2 Người',time:'35 phút',price:'280,000₫',tags:['Tối','Nướng'],why:'time_slot = dinner · Weekend'},
+    {bg:'bg-purple',em:'🦐',badge:'Đặc sản',brand:'Hải Sản Tươi',name:'Tôm Nướng Muối Ớt',time:'28 phút',price:'145,000₫',tags:['Tối','Đặc sản'],why:'Dinner segment · seafood'},
+    {bg:'bg-teal',em:'🌮',badge:'',brand:'Fusion Street',name:'Bò Kobe Fusion Dinner',time:'22 phút',price:'165,000₫',tags:['Tối','Premium'],why:'High spend dinner segment'},
+    {bg:'bg-yellow',em:'🍜',badge:'Buffet',brand:'Phở Hà Nội',name:'Buffet Phở All-you-can',time:'Tại bàn',price:'189,000₫',tags:['Buffet','Tối T4–CN'],why:'4–8PM Buffet catalog filter'},
+  ]},
+  weekend:{pill:'🎉 Cuối tuần · Thứ 7, Chủ nhật', items:[
+    {bg:'bg-orange',em:'🥩',badge:'Weekend Hot',brand:'BBQ Garden',name:'Set Nướng 4 Người Cuối Tuần',time:'40 phút',price:'520,000₫',tags:['Gia đình','Hot'],why:'Weekend · group dining segment'},
+    {bg:'bg-pink',em:'🦐',badge:'T7 Special',brand:'Hải Sản Tươi',name:'Combo Hải Sản Tươi Sống',time:'35 phút',price:'390,000₫',tags:['Weekend','Special'],why:'Weekend time_slot · seafood'},
+    {bg:'bg-green',em:'🍻',badge:'Bạn bè',brand:'Fusion Street',name:'Party Set Đồ Nhậu',time:'30 phút',price:'450,000₫',tags:['Party','Nhậu'],why:'Weekend evening + group size'},
+    {bg:'bg-blue',em:'🎂',badge:'Celebration',brand:'GGG Events',name:'Birthday Package Cuối Tuần',time:'Đặt trước',price:'Liên hệ',tags:['Đặc biệt'],why:'Weekend + occasion = birthday'},
+  ]},
+  latenight:{pill:'🌙 Khuya · 21:00–24:00', items:[
+    {bg:'bg-teal',em:'🍜',badge:'Khuya #1',brand:'Phở Hà Nội',name:'Phở Khuya Bò Viên',time:'25 phút',price:'79,000₫',tags:['Khuya','Nhanh'],why:'Late-night catalog · light items'},
+    {bg:'bg-purple',em:'🧋',badge:'Khuya',brand:'Trà Sữa 888',name:'Brown Sugar Milk Tea',time:'15 phút',price:'55,000₫',tags:['Khuya','Đồ uống'],why:'Late-night drinks high CTR'},
+    {bg:'bg-yellow',em:'🥟',badge:'Ăn vặt',brand:'Cơm Tấm Express',name:'Bánh Mì Thịt Khuya',time:'18 phút',price:'45,000₫',tags:['Ăn vặt','Nhanh'],why:'Small bites · late night flag'},
+    {bg:'bg-pink',em:'🍮',badge:'Ngọt',brand:'GGG Desserts',name:'Chè Thái Khuya',time:'12 phút',price:'35,000₫',tags:['Dessert','Khuya'],why:'Late-night sweets segment'},
+  ]}
+};
+
+function switchTimeSlot(slot){
+  const ts = timeSlots[slot];
+  document.getElementById('time-pill').textContent = ts.pill;
+  const grid = document.getElementById('time-grid');
+  grid.innerHTML = ts.items.map((item,i)=>`
+    <div class="rcard" style="animation-delay:${i*0.07}s">
+      <div class="rcard-img ${item.bg}"><span>${item.em}</span>${item.badge?'<div class="cbadge">'+item.badge+'</div>':''}</div>
+      <div class="rcard-body">
+        <div class="rcard-brand">${item.brand}</div>
+        <div class="rcard-name">${item.name}</div>
+        <div class="rcard-meta"><span>⏱ ${item.time}</span><span class="rcard-price">${item.price}</span></div>
+        <div class="tags">${item.tags.map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
+        <div class="why">${item.why}</div>
+      </div>
+      <div class="feedback-overlay">
+        <div class="fb-title">📣 Feedback (Roadmap)</div>
+        <div class="fb-btns">
+          <button class="fb-btn fb-dislike">👎 Không thích</button>
+          <button class="fb-btn fb-ate">✅ Đã ăn rồi</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Auto toast on load
+setTimeout(showToast, 1500);
+</script>
+</body>
+</html>
